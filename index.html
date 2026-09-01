@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087f5b">
+<meta name="description" content="Assistant Post-Bac Mali — ton parcours après le Bac, simplement.">
+<title>Assistant Post-Bac Mali</title>
+
+<style>
+:root{
+  --green:#087f5b;
+  --green-dark:#056044;
+  --green-light:#e9f8f2;
+  --gold:#f4c542;
+  --dark:#14231e;
+  --text:#26332f;
+  --muted:#71807a;
+  --bg:#f5f8f7;
+  --white:#ffffff;
+  --border:#e3ebe7;
+  --shadow:0 12px 35px rgba(20,35,30,.08);
+  --radius:20px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav{
+  max-width:1150px;
+  margin:auto;
+  min-height:70px;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  color:var(--dark);
+  font-size:19px;
+}
+
+.logo-icon{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:var(--green);
+  color:white;
+  font-size:21px;
+}
+
+.logo span{
+  color:var(--green);
+}
+
+.nav-links{
+  display:flex;
+  gap:6px;
+}
+
+.nav-links button{
+  border:0;
+  background:transparent;
+  padding:10px 12px;
+  border-radius:10px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.nav-links button:hover,
+.nav-links button.active{
+  background:var(--green-light);
+  color:var(--green-dark);
+}
+
+.mobile-menu{
+  display:none;
+  border:0;
+  background:var(--green-light);
+  color:var(--green);
+  padding:10px 12px;
+  border-radius:10px;
+  font-size:20px;
+}
+
+main{
+  max-width:1150px;
+  margin:auto;
+  padding:25px 18px 70px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:430px;
+  border-radius:28px;
+  padding:50px 35px;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(244,197,66,.30),transparent 25%),
+    radial-gradient(circle at 100% 100%,rgba(255,255,255,.10),transparent 35%),
+    linear-gradient(135deg,#087f5b,#034b37);
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+}
+
+.hero-content{
+  max-width:700px;
+  position:relative;
+  z-index:2;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.20);
+  padding:7px 12px;
+  border-radius:50px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.4px;
+}
+
+.hero h1{
+  margin:18px 0 14px;
+  font-size:clamp(36px,7vw,64px);
+  line-height:1.02;
+  letter-spacing:-2px;
+}
+
+.hero p{
+  max-width:620px;
+  line-height:1.7;
+  font-size:17px;
+  opacity:.93;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:12px 17px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:var(--green);
+  color:white;
+}
+
+.hero .btn-primary{
+  background:white;
+  color:var(--green-dark);
+}
+
+.btn-secondary{
+  background:#edf3f0;
+  color:var(--dark);
+}
+
+.btn-outline{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--dark);
+}
+
+.hero-decoration{
+  position:absolute;
+  right:-50px;
+  bottom:-80px;
+  width:330px;
+  height:330px;
+  border:45px solid rgba(255,255,255,.07);
+  border-radius:50%;
+}
+
+.section-title{
+  margin:38px 0 18px;
+}
+
+.section-title h2{
+  margin:0 0 6px;
+  font-size:27px;
+}
+
+.section-title p{
+  margin:0;
+  color:var(--muted);
+}
+
+.tools{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.tool{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 6px 22px rgba(20,35,30,.04);
+}
+
+.tool-icon{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:var(--green-light);
+  font-size:22px;
+  margin-bottom:14px;
+}
+
+.tool h3{
+  margin:0 0 8px;
+}
+
+.tool p{
+  margin:0 0 15px;
+  color:var(--muted);
+  line-height:1.5;
+  font-size:14px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+.card h2{
+  margin-top:0;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:800;
+  font-size:14px;
+}
+
+input,select{
+  width:100%;
+  border:1px solid #d8e2dd;
+  border-radius:11px;
+  padding:12px 13px;
+  background:white;
+  color:var(--text);
+  outline:none;
+}
+
+input:focus,select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(8,127,91,.10);
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.result{
+  margin-top:20px;
+  padding:19px;
+  background:var(--green-light);
+  border:1px solid #cdebe0;
+  border-radius:15px;
+}
+
+.big-result{
+  font-size:39px;
+  font-weight:950;
+  color:var(--green-dark);
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.subject{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:10px;
+  margin-bottom:10px;
+  align-items:end;
+}
+
+.remove{
+  border:0;
+  background:#fff0f0;
+  color:#b42318;
+  border-radius:10px;
+  padding:11px;
+  font-weight:800;
+}
+
+.path{
+  display:grid;
+  gap:10px;
+  margin-top:20px;
+}
+
+.step{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#fff;
+}
+
+.step-number{
+  min-width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--green);
+  color:white;
+  font-weight:900;
+}
+
+.check-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin:9px 0;
+}
+
+.check-item input{
+  width:18px;
+  height:18px;
+  margin-top:2px;
+  accent-color:var(--green);
+}
+
+.progress{
+  height:10px;
+  background:#e8efec;
+  border-radius:50px;
+  overflow:hidden;
+  margin-top:18px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:var(--green);
+  transition:.3s;
+}
+
+.uni-search{
+  margin-bottom:18px;
+}
+
+.uni-list{
+  display:grid;
+  gap:12px;
+}
+
+.uni{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:17px;
+  background:white;
+}
+
+.uni h3{
+  margin:7px 0;
+}
+
+.tags{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:50px;
+  background:var(--green-light);
+  color:var(--green-dark);
+  font-size:12px;
+  font-weight:800;
+}
+
+.budget-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.budget-total{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top:20px;
+}
+
+.total-box{
+  padding:20px;
+  background:var(--green-light);
+  border-radius:16px;
+}
+
+.total-box strong{
+  display:block;
+  font-size:28px;
+  color:var(--green-dark);
+  margin-top:5px;
+}
+
+.notice{
+  padding:13px 15px;
+  border-radius:12px;
+  background:#fff8df;
+  border:1px solid #f3df91;
+  color:#685300;
+  margin-top:16px;
+  font-size:14px;
+  line-height:1.5;
+}
+
+footer{
+  text-align:center;
+  padding:25px 18px;
+  border-top:1px solid var(--border);
+  background:white;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:850px){
+  .tools{grid-template-columns:repeat(2,1fr)}
+  .budget-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:650px){
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:68px;
+    left:12px;
+    right:12px;
+    background:white;
+    padding:10px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    box-shadow:var(--shadow);
+    flex-direction:column;
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .hero{
+    padding:34px 22px;
+    min-height:430px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .tools,
+  .form-grid,
+  .budget-grid,
+  .budget-total{
+    grid-template-columns:1fr;
+  }
+
+  .subject{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .subject .name{
+    grid-column:1/-1;
+  }
+
+  main{
+    padding-left:12px;
+    padding-right:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="nav">
+
+    <div class="logo">
+      <div class="logo-icon">🎓</div>
+      <div>Assistant <span>Post-Bac</span></div>
+    </div>
+
+    <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <button class="active" onclick="showPage('home',this)">Accueil</button>
+      <button onclick="showPage('average',this)">Moyenne</button>
+      <button onclick="showPage('path',this)">Mon parcours</button>
+      <button onclick="showPage('checklist',this)">Checklist</button>
+      <button onclick="showPage('universities',this)">Universités</button>
+      <button onclick="showPage('budget',this)">Budget</button>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+<!-- ACCUEIL -->
+<section class="page active" id="home">
+
+  <div class="hero">
+
+    <div class="hero-content">
+
+      <span class="badge">🇲🇱 CONÇU POUR LES NOUVEAUX BACHELIERS</span>
+
+      <h1>Ton parcours après le Bac, simplifié.</h1>
+
+      <p>
+        Calcule ta moyenne, organise tes documents,
+        découvre les étapes de ton inscription et estime
+        ton budget étudiant depuis ton téléphone.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showPage('path')">
+          🎓 Commencer mon parcours
+        </button>
+
+        <button class="btn btn-secondary" onclick="showPage('average')">
+          🧮 Calculer ma moyenne
+        </button>
+      </div>
+
+    </div>
+
+    <div class="hero-decoration"></div>
+
+  </div>
+
+  <div class="section-title">
+    <h2>Tout ce dont tu as besoin</h2>
+    <p>Des outils simples, rapides et accessibles depuis ton téléphone.</p>
+  </div>
+
+  <div class="tools">
+
+    <div class="tool">
+      <div class="tool-icon">🧮</div>
+      <h3>Calculateur</h3>
+      <p>Calcule une moyenne pondérée avec tes notes et coefficients.</p>
+      <button class="btn btn-secondary" onclick="showPage('average')">Ouvrir</button>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">🎓</div>
+      <h3>Mon parcours</h3>
+      <p>Obtiens une feuille de route personnalisée après ton Bac.</p>
+      <button class="btn btn-secondary" onclick="showPage('path')">Ouvrir</button>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">📋</div>
+      <h3>Checklist</h3>
+      <p>Organise les documents nécessaires à tes démarches.</p>
+      <button class="btn btn-secondary" onclick="showPage('checklist')">Ouvrir</button>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">💰</div>
+      <h3>Budget étudiant</h3>
+      <p>Estime tes dépenses mensuelles et annuelles.</p>
+      <button class="btn btn-secondary" onclick="showPage('budget')">Ouvrir</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MOYENNE -->
+<section class="page" id="average">
+
+  <div class="card">
+
+    <h2>🧮 Calculateur de moyenne</h2>
+
+    <p class="muted">
+      Ajoute tes matières, tes notes et leurs coefficients.
+    </p>
+
+    <div id="subjects"></div>
+
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="addSubject()">
+        + Ajouter une matière
+      </button>
+
+      <button class="btn btn-primary" onclick="calculateAverage()">
+        Calculer ma moyenne
+      </button>
+    </div>
+
+    <div id="averageResult"></div>
+
+  </div>
+
+</section>
+
+
+<!-- PARCOURS -->
+<section class="page" id="path">
+
+  <div class="card">
+
+    <h2>🎓 Construis ton parcours</h2>
+
+    <p class="muted">
+      Quelques informations suffisent pour générer une feuille de route.
+    </p>
+
+    <div class="form-grid">
+
+      <div class="field">
+        <label>Ville où tu souhaites étudier</label>
+        <select id="city">
+          <option>Bamako</option>
+          <option>Ségou</option>
+          <option>Sikasso</option>
+          <option>Mopti</option>
+          <option>Tombouctou</option>
+          <option>Autre</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Type d'établissement</label>
+        <select id="schoolType">
+          <option>Université publique</option>
+          <option>Université privée</option>
+          <option>Je ne sais pas encore</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>As-tu choisi ta formation ?</label>
+        <select id="hasFormation">
+          <option>Oui</option>
+          <option>Non</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Domaine souhaité</label>
+        <select id="domain">
+          <option>Économie / Gestion</option>
+          <option>Droit</option>
+          <option>Informatique</option>
+          <option>Sciences</option>
+          <option>Santé</option>
+          <option>Langues / Lettres</option>
+          <option>Je ne sais pas encore</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="generatePath()">
+        Générer mon parcours
+      </button>
+    </div>
+
+    <div id="pathResult"></div>
+
+  </div>
+
+</section>
+
+
+<!-- CHECKLIST -->
+<section class="page" id="checklist">
+
+  <div class="card">
+
+    <h2>📋 Ma checklist</h2>
+
+    <p class="muted">
+      Coche les éléments déjà préparés. Ta progression est sauvegardée
+      automatiquement sur cet appareil.
+    </p>
+
+    <div id="checklistItems"></div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <p id="progressText" class="muted"></p>
+
+    <button class="btn btn-secondary" onclick="resetChecklist()">
+      Réinitialiser
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- UNIVERSITÉS -->
+<section class="page" id="universities">
+
+  <div class="card">
+
+    <h2>🏫 Explorer les établissements</h2>
+
+    <p class="muted">
+      Recherche un établissement par nom ou par ville.
+    </p>
+
+    <input
+      class="uni-search"
+      id="uniSearch"
+      placeholder="🔎 Rechercher une université..."
+      oninput="renderUniversities()"
+    >
+
+    <div class="uni-list" id="uniList"></div>
+
+    <div class="notice">
+      ⚠️ Les dates, frais, conditions d'admission et pièces demandées
+      peuvent changer. Avant toute démarche, vérifie toujours les
+      informations auprès de l'établissement ou de la source officielle.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BUDGET -->
+<section class="page" id="budget">
+
+  <div class="card">
+
+    <h2>💰 Simulateur de budget étudiant</h2>
+
+    <p class="muted">
+      Entre tes estimations mensuelles pour obtenir une estimation annuelle.
+    </p>
+
+    <div class="budget-grid">
+
+      <div class="field">
+        <label>🏠 Logement</label>
+        <input id="rent" type="number" min="0" value="30000">
+      </div>
+
+      <div class="field">
+        <label>🍛 Nourriture</label>
+        <input id="food" type="number" min="0" value="45000">
+      </div>
+
+      <div class="field">
+        <label>🚌 Transport</label>
+        <input id="transport" type="number" min="0" value="15000">
+      </div>
+
+      <div class="field">
+        <label>📱 Téléphone / Internet</label>
+        <input id="phone" type="number" min="0" value="10000">
+      </div>
+
+      <div class="field">
+        <label>📚 Fournitures</label>
+        <input id="supplies" type="number" min="0" value="10000">
+      </div>
+
+      <div class="field">
+        <label>➕ Autres dépenses</label>
+        <input id="other" type="number" min="0" value="10000">
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="calculateBudget()">
+        Calculer mon budget
+      </button>
+    </div>
+
+    <div id="budgetResult"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+  <strong>Assistant Post-Bac Mali</strong><br>
+  Outil numérique indépendant — version V3
+  <br><br>
+  Les informations administratives doivent être vérifiées auprès des établissements concernés.
+</footer>
+
+
+<script>
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("open");
+}
+
+function showPage(id, button){
+
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".nav-links button").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  document.getElementById("navLinks").classList.remove("open");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================
+   CALCULATEUR MOYENNE
+========================= */
+
+let subjectCount=0;
+
+function addSubject(name="",note="",coef=""){
+
+  subjectCount++;
+
+  const container=document.getElementById("subjects");
+
+  const row=document.createElement("div");
+
+  row.className="subject";
+
+  row.innerHTML=`
+
+    <div class="field name">
+      <label>Matière</label>
+      <input class="subject-name"
+             placeholder="Ex. Mathématiques"
+             value="${name}">
+    </div>
+
+    <div class="field">
+      <label>Note</label>
+      <input class="subject-note"
+             type="number"
+             min="0"
+             max="20"
+             step="0.01"
+             value="${note}">
+    </div>
+
+    <div class="field">
+      <label>Coefficient</label>
+      <input class="subject-coef"
+             type="number"
+             min="0"
+             step="0.1"
+             value="${coef}">
+    </div>
+
+    <button class="remove"
+            onclick="this.parentElement.remove()">
+      ✕
+    </button>
+  `;
+
+  container.appendChild(row);
+}
+
+function calculateAverage(){
+
+  const notes=document.querySelectorAll(".subject-note");
+  const coefs=document.querySelectorAll(".subject-coef");
+
+  let totalPoints=0;
+  let totalCoef=0;
+
+  notes.forEach((input,index)=>{
+
+    const note=parseFloat(input.value);
+    const coef=parseFloat(coefs[index].value);
+
+    if(
+      !isNaN(note) &&
+      !isNaN(coef) &&
+      coef>0 &&
+      note>=0 &&
+      note<=20
+    ){
+
+      totalPoints+=note*coef;
+      totalCoef+=coef;
+
+    }
+
+  });
+
+  if(totalCoef===0){
+
+    document.getElementById("averageResult").innerHTML=`
+      <div class="result">
+        ⚠️ Entre au moins une note et un coefficient valide.
+      </div>
+    `;
+
+    return;
+  }
+
+  const average=totalPoints/totalCoef;
+
+  let message="";
+
+  if(average>=16){
+    message="Excellent résultat.";
+  }else if(average>=14){
+    message="Très bon résultat.";
+  }else if(average>=12){
+    message="Bon résultat.";
+  }else if(average>=10){
+    message="Moyenne atteinte.";
+  }else{
+    message="Cette simulation est un outil indicatif.";
+  }
+
+  document.getElementById("averageResult").innerHTML=`
+
+    <div class="result">
+
+      <div class="muted">Ta moyenne pondérée</div>
+
+      <div class="big-result">
+        ${average.toFixed(2)}/20
+      </div>
+
+      <strong>${message}</strong>
+
+      <p>
+        ${totalPoints.toFixed(2)} points pour
+        ${totalCoef} coefficients.
+      </p>
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   PARCOURS
+========================= */
+
+function generatePath(){
+
+  const city=document.getElementById("city").value;
+  const type=document.getElementById("schoolType").value;
+  const formation=document.getElementById("hasFormation").value;
+  const domain=document.getElementById("domain").value;
+
+  const firstStep=
+    formation==="Oui"
+    ? `Confirmer ta formation en ${domain}`
+    : `Choisir une formation correspondant à ton projet`;
+
+  const steps=[
+    firstStep,
+    `Rechercher les établissements disponibles à ${city}`,
+    `Vérifier les conditions d'admission`,
+    `Préparer les documents demandés`,
+    `Vérifier les dates et la procédure officielle`,
+    `Effectuer la préinscription ou l'inscription`,
+    `Conserver les preuves, reçus et documents`,
+    `Préparer ta rentrée`
+  ];
+
+  document.getElementById("pathResult").innerHTML=`
+
+    <div class="result">
+
+      <strong>🎯 Ton parcours personnalisé</strong>
+
+      <p>
+        ${city} • ${type} • ${domain}
+      </p>
+
+      <div class="path">
+
+        ${steps.map((step,index)=>`
+
+          <div class="step">
+
+            <div class="step-number">
+              ${index+1}
+            </div>
+
+            <div>
+              <strong>${step}</strong>
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   CHECKLIST
+========================= */
+
+const checklistData=[
+
+  "Pièce d'identité",
+
+  "Photos d'identité",
+
+  "Relevé de notes du Bac",
+
+  "Diplôme ou attestation de réussite",
+
+  "Documents demandés par l'établissement",
+
+  "Preuve de paiement si nécessaire",
+
+  "Preuve de préinscription ou d'inscription",
+
+  "Conserver une copie de tous les documents"
+
+];
+
+function renderChecklist(){
+
+  const saved=
+    JSON.parse(
+      localStorage.getItem("postbacChecklist") || "{}"
+    );
+
+  const container=
+    document.getElementById("checklistItems");
+
+  container.innerHTML=
+    checklistData.map((item,index)=>`
+
+      <label class="check-item">
+
+        <input
+          type="checkbox"
+          ${saved[index] ? "checked" : ""}
+          onchange="toggleCheck(${index},this.checked)"
+        >
+
+        <span>${item}</span>
+
+      </label>
+
+    `).join("");
+
+  updateProgress();
+}
+
+function toggleCheck(index,value){
+
+  const saved=
+    JSON.parse(
+      localStorage.getItem("postbacChecklist") || "{}"
+    );
+
+  saved[index]=value;
+
+  localStorage.setItem(
+    "postbacChecklist",
+    JSON.stringify(saved)
+  );
+
+  updateProgress();
+}
+
+function updateProgress(){
+
+  const saved=
+    JSON.parse(
+      localStorage.getItem("postbacChecklist") || "{}"
+    );
+
+  const completed=
+    checklistData.filter(
+      (_,index)=>saved[index]
+    ).length;
+
+  const percent=
+    Math.round(
+      completed/checklistData.length*100
+    );
+
+  document.getElementById("progressBar").style.width=
+    percent+"%";
+
+  document.getElementById("progressText").textContent=
+    `${completed}/${checklistData.length} éléments préparés — ${percent}%`;
+}
+
+function resetChecklist(){
+
+  localStorage.removeItem("postbacChecklist");
+
+  renderChecklist();
+}
+
+
+/* =========================
+   UNIVERSITÉS
+========================= */
+
+const universities=[
+
+  {
+    name:"Université des Sciences, des Techniques et des Technologies de Bamako",
+    city:"Bamako",
+    type:"Université publique"
+  },
+
+  {
+    name:"Université des Sciences Sociales et de Gestion de Bamako",
+    city:"Bamako",
+    type:"Université publique"
+  },
+
+  {
+    name:"Université des Sciences Juridiques et Politiques de Bamako",
+    city:"Bamako",
+    type:"Université publique"
+  },
+
+  {
+    name:"Université des Lettres et des Sciences Humaines de Bamako",
+    city:"Bamako",
+    type:"Université publique"
+  },
+
+  {
+    name:"Université de Ségou",
+    city:"Ségou",
+    type:"Université publique"
+  },
+
+  {
+    name:"École Normale Supérieure de Bamako",
+    city:"Bamako",
+    type:"Grande école publique"
+  },
+
+  {
+    name:"École Nationale d'Ingénieurs Abderhamane Baba Touré",
+    city:"Bamako",
+    type:"Grande école publique"
+  },
+
+  {
+    name:"Institut Polytechnique Rural de Formation et de Recherche Appliquée",
+    city:"Katibougou",
+    type:"Institut public"
+  }
+
+];
+
+function renderUniversities(){
+
+  const query=
+    document.getElementById("uniSearch")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const filtered=
+    universities.filter(u=>
+      `${u.name} ${u.city} ${u.type}`
+      .toLowerCase()
+      .includes(query)
+    );
+
+  const container=
+    document.getElementById("uniList");
+
+  if(filtered.length===0){
+
+    container.innerHTML=`
+      <div class="result">
+        Aucun établissement trouvé.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML=
+    filtered.map(u=>`
+
+      <div class="uni">
+
+        <div class="tags">
+          <span class="tag">${u.type}</span>
+          <span class="tag">📍 ${u.city}</span>
+        </div>
+
+        <h3>${u.name}</h3>
+
+        <p class="muted">
+          Cette fiche sera enrichie progressivement avec
+          les formations, conditions, dates et liens officiels.
+        </p>
+
+      </div>
+
+    `).join("");
+}
+
+
+/* =========================
+   BUDGET
+========================= */
+
+function value(id){
+
+  return Math.max(
+    0,
+    parseFloat(
+      document.getElementById(id).value
+    ) || 0
+  );
+
+}
+
+function calculateBudget(){
+
+  const total=
+    value("rent")+
+    value("food")+
+    value("transport")+
+    value("phone")+
+    value("supplies")+
+    value("other");
+
+  const annual=total*12;
+
+  document.getElementById("budgetResult").innerHTML=`
+
+    <div class="budget-total">
+
+      <div class="total-box">
+
+        <div class="muted">
+          Budget mensuel estimé
+        </div>
+
+        <strong>
+          ${total.toLocaleString("fr-FR")} FCFA
+        </strong>
+
+      </div>
+
+      <div class="total-box">
+
+        <div class="muted">
+          Estimation sur 12 mois
+        </div>
+
+        <strong>
+          ${annual.toLocaleString("fr-FR")} FCFA
+        </strong>
+
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+/* =========================
+   INITIALISATION
+========================= */
+
+addSubject("Mathématiques","12","3");
+addSubject("Économie","14","4");
+addSubject("Comptabilité","13","2");
+
+renderChecklist();
+renderUniversities();
+
+</script>
+
+</body>
+</html>
